@@ -15,13 +15,13 @@ The tenth project of 42's curriculum asks students to configure small-scale netw
 
 To sum up, the most important concepts required for this project are:
 
-- What a router, a switch and host are and how they work
-- WAN vs. LAN
-- What protocols are and how TCP/IP works
-- Public and private IP addresses
-- Static routing
-- Submask and CIDR Notation
-- What a interface, its destination and its next-hop are
+- What a router, a switch and host are and how they work;
+- WAN vs. LAN;
+- What protocols are and how TCP/IP works;
+- Public and private IP addresses;
+- Static routing;
+- Submask and CIDR Notation;
+- What a interface, its destination and its next-hop are.
 
 ## How to use the repository
 
