@@ -36,5 +36,4 @@ There are two folders: `net_practice` and `solutions`. The first directory conta
 - Other interesting references:
   - Videos #28 to #30 from [Computer Networks: Crash Course Computer Science](https://www.youtube.com/watch?v=3QhU9jd03a0) by [CrashCourse](https://www.youtube.com/@crashcourse).
   - [Subnet Cheat Sheet – 24 Subnet Mask, 30, 26, 27, 29, and other IP Address CIDR Network References](https://www.freecodecamp.org/news/subnet-cheat-sheet-24-subnet-mask-30-26-27-29-and-other-ip-address-cidr-network-references/) by [freeCodeCamp](https://www.freecodecamp.org/).
-  - Playlist of [Free CCNA Course](https://www.youtube.com/watch?v=S7MNX_UD7vY&list=PLIhvC56v63IJVXv0GJcl9vO5Z6znCVb1P&index=1) by [NetworkChuck](https://www.youtube.com/@NetworkChuck).
   - Playlist of [Curso de Endereçamento IP](https://www.youtube.com/playlist?list=PLAp37wMSBouCU49LV0qFbItufigjYk-sp) by [Hardware Redes Brasil](https://www.youtube.com/@HardwareRedesBrasil).
