@@ -25,7 +25,7 @@ To sum up, the most important concepts required for this project are:
 
 ## How to use the repository
 
-There are two folders: `net_practice` and `solutions`. The first directory contains the exercises to be done and the second folder have the solutions for each one of the 10 levels.
+There are two folders: `net_practice` and `solutions`. The first directory contains the exercises to be done and the second folder have the answers for each one of the 10 levels.
 
 ## References
 
