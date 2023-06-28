@@ -10,9 +10,9 @@
     <img src="https://img.shields.io/badge/Status-Completed-brightgreen.svg" alt="Status">
 </p>
 
-## Introduction
+## 📣 Introduction
 
-The tenth project of 42's curriculum asks students to configure small-scale networks. To do that, it's necessary to understand how TCP/IP addressing works.
+The tenth project of 42 curriculum asks students to configure small-scale networks. To do that, it's necessary to understand how TCP/IP addressing works.
 
 To sum up, the most important concepts required for this project are:
 
@@ -24,11 +24,11 @@ To sum up, the most important concepts required for this project are:
 - Submask and CIDR Notation;
 - What a interface, its destination and its next-hop are.
 
-## How to use the repository
+## ⚒️ How to use the repository
 
-There are two folders: `net_practice` and `solutions`. The first directory contains the exercises to be done and the second folder have the answers for each one of the 10 levels.
+There are two folders: `net_practice` and `solutions`. The first directory contains the exercises to be done, and the second folder has the answers for each one of the 10 levels. You can try to solve the questions yourself by opening the `index.html` file in the first directory.
 
-## References
+## 📖 References
 
 - General references:
   - Playlist of [Network Fundamentals](https://www.youtube.com/playlist?list=PLDQaRcbiSnqF5U8ffMgZzS7fq1rHUI3Q8) by [Network Direction](https://www.youtube.com/@NetworkDirection).
