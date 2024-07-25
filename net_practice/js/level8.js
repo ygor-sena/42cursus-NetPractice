@@ -1,7 +1,7 @@
 
-var level = 8;
+const level = 8;
 
-var hosts = [
+const hosts = [
     {'id':'C', 'type':'client', 'name':'office.non-real.com', 'geometry':'200x220+600+900', 'img':'host.png', 'labelpos':'180,100'},
     {'id':'D', 'type':'client', 'name':'home.non-real.com', 'geometry':'200x220+100+900', 'img':'host.png', 'labelpos':'180,100'},
     {'id':'R1', 'type':'router', 'name':'gate.non-real.com', 'geometry':'200x200+400+200', 'img':'router.png', 'labelpos':'-270,20'},
@@ -10,7 +10,7 @@ var hosts = [
 ];
 
 // routes are processed in order, first match only is used => default must be last - KEEP routes before interfaces for random reference and keep routes in host order
-var routes = [
+const routes = [
     {'hid':'C', 'rid':'Cr1', 'route':'0.0.0.0/0', 'gate':'10.0.0.254', 'route_edit':'true', 'gate_edit':'true'},
     {'hid':'D', 'rid':'Dr1', 'route':'default', 'gate':'8.8.8.8', 'route_edit':'true', 'gate_edit':'true'},
     {'hid':'R1', 'rid':'R1r2', 'route':'192.168.0.0/26', 'gate':'10.0.0.2', 'route_edit':'true', 'gate_edit':'true'},
@@ -20,7 +20,7 @@ var routes = [
 ];
 
 
-var ifs = [
+const ifs = [
     {'if':'C1', 'hid':'C', 'ip':'192.168.0.1', 'mask':'255.255.255.0', 'ip_edit':'true', 'mask_edit':'true', 'type':'std', 'pos':'20,-50'},
     {'if':'D1', 'hid':'D', 'ip':'8.9.10.11', 'mask':'255.255.255.240', 'ip_edit':'true', 'mask_edit':'false', 'type':'std', 'pos':'0,-50'},
     {'if':'R12', 'hid':'R1', 'ip':'163.[a].250.12', 'mask':'255.255.255.240', 'ip_edit':'false', 'mask_edit':'false', 'type':'std', 'pos':'190,20'},
@@ -32,14 +32,14 @@ var ifs = [
 ];
 
 
-var links = [
+const links = [
     {'if1':'I1', 'if2':'R12'},
     {'if1':'R13', 'if2':'R21'},
     {'if1':'R22', 'if2':'C1'},
     {'if1':'R23', 'if2':'D1'}
 ];
 
-var goals = [
+const goals = [
     {'id':'1', 'type':'reach', 'id1':'C', 'id2':'D'},
     {'id':'2', 'type':'reach', 'id1':'C', 'id2':'I'},
     {'id':'3', 'type':'reach', 'id1':'D', 'id2':'I'}

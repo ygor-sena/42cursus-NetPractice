@@ -1,8 +1,8 @@
 
 
-var visited_host = [];
+let visited_host = [];
 
-var private_subnets = [
+let private_subnets = [
     {'hid':'__none__', 'rid':'private_class_A', 'route':'10.0.0.0/8', 'gate':'0.0.0.0', 'route_edit':'false', 'gate_edit':'false', 'h':{'type':'internet'}},
     {'hid':'__none__', 'rid':'private_class_B', 'route':'172.16.0.0/12', 'gate':'0.0.0.0', 'route_edit':'false', 'gate_edit':'false', 'h':{'type':'internet'}},
     {'hid':'__none__', 'rid':'private_class_C', 'route':'192.168.0.0/16', 'gate':'0.0.0.0', 'route_edit':'false', 'gate_edit':'false', 'h':{'type':'internet'}}
@@ -13,7 +13,7 @@ var private_subnets = [
 
 function ip_to_int(s)
 {
-    var tab = s.split('.');
+    let tab = s.split('.');
     if (tab.length != 4) return (null);
     if (parseInt(tab[0]) < 0 || parseInt(tab[0]) > 223 || parseInt(tab[1]) < 0 || parseInt(tab[1]) > 255 ||
 	parseInt(tab[2]) < 0 || parseInt(tab[2]) > 255 || parseInt(tab[3]) < 0 || parseInt(tab[3]) > 255) return (null);
@@ -26,11 +26,11 @@ function mask_to_int(s)
     if (s.length == 0) return (null);
     if (s[0] == '/')
     {
-	var cidr = parseInt(s.substring(1));
+	let cidr = parseInt(s.substring(1));
 	if (cidr < 0 || cidr > 32) return (null);
 	return ( ((1 << cidr)-1) << (32-cidr));
     }
-    var tab = s.split('.');
+    let tab = s.split('.');
     if (tab.length != 4) return (null);
     if (parseInt(tab[0]) < 0 || parseInt(tab[0]) > 255 || parseInt(tab[1]) < 0 || parseInt(tab[1]) > 255 ||
 	parseInt(tab[2]) < 0 || parseInt(tab[2]) > 255 || parseInt(tab[3]) < 0 || parseInt(tab[3]) > 255) return (null);
@@ -38,7 +38,7 @@ function mask_to_int(s)
     if (parseInt(tab[0]) == 255 && parseInt(tab[1]) != 255 && (parseInt(tab[2]) != 0 || parseInt(tab[3]) != 0)) return (null);
     if (parseInt(tab[0]) == 255 && parseInt(tab[1]) == 255 && parseInt(tab[2]) != 255 && parseInt(tab[3]) != 0) return (null);
     // magic trick to check if we have continuity of 1 then 0
-    var mask = ( ( (parseInt(tab[0]) << 24) | ((parseInt(tab[1])) << 16) | ((parseInt(tab[2])) << 8) | (parseInt(tab[3])) ) >>> 0);
+    let mask = ( ( (parseInt(tab[0]) << 24) | ((parseInt(tab[1])) << 16) | ((parseInt(tab[2])) << 8) | (parseInt(tab[3])) ) >>> 0);
     if (mask == 0) return (0);
     if ( ( ((~mask)+1) & (~mask) ) == 0)
 	return (mask);
@@ -68,9 +68,9 @@ function get_if_ip_str(itf)
 }
 function get_if_ip(itf)
 {
-    var the_ip = ip_to_int(get_if_ip_str(itf));
+    let the_ip = ip_to_int(get_if_ip_str(itf));
     // check if ip is not the network or broadcast address
-    var the_mask = get_if_mask(itf);
+    let the_mask = get_if_mask(itf);
     if ( (the_ip & (~the_mask)) == 0 ||
 	 (the_ip & (~the_mask)) == (~the_mask) )
 	return (null);
@@ -102,10 +102,9 @@ function get_route_gate(r)
 
 function ip_match_if(ip, itf)
 {
-    var iip, imask;
+    let iip, imask;
     if ((iip = get_if_ip(itf)) === null) { g_sim_logs += 'on interface '+itf['if']+': invalid IP address\n'; return (0); }
     if ((imask = get_if_mask(itf)) === null) { g_sim_logs += 'on interface '+itf['if']+': invalid netmask\n'; return (0); }
-//    my_console_log("## "+iip+" & "+imask+" == "+ip+" & "+imask);
     if (iip == ip) { g_sim_logs += "duplicate IP ("+get_if_ip_str(itf)+")\n"; return (0); } // ip_match_if is called only on output, not on arrival
     if ((iip & imask) == (ip & imask))
     {
@@ -118,14 +117,12 @@ function ip_match_if(ip, itf)
 
 function ip_match_route(ip, r)
 {
-    var str, rip, rmask;
+    let str, rip, rmask;
     str = get_route_route_str(r);
     if (str == 'default') str = '0.0.0.0/0';
-//    my_console_log("ip_match_route route :"+JSON.stringify(r));
     if (r['h']['type'] == "internet" && str == '0.0.0.0/0')
     { g_sim_logs += 'invalid default route on internet '+r['hid']+'\n'; return (0); }
-    var tab = str.split('/');
-//    my_console_log("ip_match_route check : "+str+" againt ip "+ip);
+    let tab = str.split('/');
     if (tab.length != 2)
     { g_sim_logs += 'invalid route on host '+r['hid']+'\n'; return (0); }
     if ((rip = ip_to_int(tab[0])) === null)
@@ -141,8 +138,8 @@ function ip_match_route(ip, r)
 
 function rec_route(ip_dest, local_target, input_itf, h)   // return array of dest itf
 {
-    var i, nbif, nb_routes, ret, j;
-    var itf_ip;
+    let i, nbif, nb_routes, ret, j;
+    let itf_ip;
     
     if (input_itf != null)
 	my_console_log(" ** to "+ip_dest+" / host "+h['id']+" input itf "+input_itf['if']+" / to match local target "+local_target);
@@ -224,7 +221,7 @@ function rec_route(ip_dest, local_target, input_itf, h)   // return array of des
 	    {
 		g_sim_logs += 'on '+h['id']+' : route match '+get_route_route_str(routes[j])+'\n';
 		nb_routes ++;
-		var ip_gate = get_route_gate(routes[j]);
+		let ip_gate = get_route_gate(routes[j]);
 		if (ip_gate === null) { g_sim_logs += "on "+h['id']+": invalid gate IP, route "+get_route_route_str(routes[j])+"\n"; return ([]);}
 		nbif = 0;
 		for (i = 0; i < ifs.length; i++)
@@ -260,9 +257,9 @@ function rec_route(ip_dest, local_target, input_itf, h)   // return array of des
 function sim_reach(g)
 {
     my_console_log("check reach : "+g['id1']+" -> "+g['id2']);
-    var ret = [];
-    var i;
-    var itf_ip;
+    let ret = [];
+    let i;
+    let itf_ip;
     for (i = 0; i < ifs.length; i++)
     {
 	if (g['id2'] == ifs[i]['hid'])
@@ -314,9 +311,9 @@ function sim_reach(g)
 function sim_reach_if(g)
 {
     my_console_log("check reach interface : "+g['if_id1']+" -> "+g['if_id2']);
-    var ret = [];
-    var i;
-    var itf_ip;
+    let ret = [];
+    let i;
+    let itf_ip;
     for (i = 0; i < ifs.length; i++)
     {
 	if (g['if_id2'] == ifs[i]['if'])

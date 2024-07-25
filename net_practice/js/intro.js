@@ -3,11 +3,11 @@
 
 function save_login()
 {
-    var login = document.getElementById('input_login').value;
+    let login = document.getElementById('input_login').value;
     localStorage.setItem("g_my_login", login);
     if (login == '')
     {
-	var lvl = Math.round(6 + 4*Math.random());
+	let lvl = Math.round(6 + 4*Math.random());
 	localStorage.setItem("g_my_eval", JSON.stringify([lvl]));
 	window.location = "level"+lvl+".html";
     }
@@ -18,8 +18,9 @@ function save_login()
 
 function load_login()
 {
-    var login;
-    if (!(login = localStorage.getItem("g_my_login")))
+    let login;
+	login = localStorage.getItem("g_my_login");
+    if (!login)
         login = ''; // will means full random during sim.
     return (login);
 }
